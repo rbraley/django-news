@@ -92,5 +92,5 @@ class Article(models.Model):
 
 try:
     tagging.register(Article)
-except tagging.AlreadyRegistered:
+except tagging.AlreadyRegistered, AttributeError:
     pass
