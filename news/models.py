@@ -4,9 +4,7 @@ from django.contrib.auth.models import User
 from datetime import datetime
 import re
 import availability
-import tagging
-from tagging.fields import TagField
-from tagging.models import Tag
+from taggit.managers import TaggableManager
 
 SUMMARY_MAX_LENGTH = 768
 
@@ -45,7 +43,7 @@ class Article(models.Model):
     created_on = models.DateTimeField(blank=True)
     author = models.ForeignKey(User,null=True,blank=True)
     category = models.ManyToManyField(Category,related_name='articles',null=True,blank=True)
-    #tag_list = TagField()
+    tags = TaggableManager()
 
     def formatted_summary(self):
         return self.formatted_body(summary=True)
@@ -87,7 +85,3 @@ class Article(models.Model):
     def __unicode__(self):
         return self.title
 
-try:
-    tagging.register(Article)
-except tagging.AlreadyRegistered:
-    pass
