@@ -43,7 +43,7 @@ class Article(models.Model):
     created_on = models.DateTimeField(blank=True)
     author = models.ForeignKey(User,null=True,blank=True)
     category = models.ManyToManyField(Category,related_name='articles',null=True,blank=True)
-    tags = TagField()
+    tags = tagging.TagField()
 
     def formatted_summary(self):
         return self.formatted_body(summary=True)
