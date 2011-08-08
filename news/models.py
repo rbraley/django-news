@@ -45,7 +45,7 @@ class Article(models.Model):
     created_on = models.DateTimeField(blank=True)
     author = models.ForeignKey(User,null=True,blank=True)
     category = models.ManyToManyField(Category,related_name='articles',null=True,blank=True)
-    tags = TagField()
+    #tags = TagField()
 
     def get_tags(self):
         return Tag.objects.get_for_object(self)
@@ -91,6 +91,7 @@ class Article(models.Model):
         return self.title
 
 try:
-    tagging.register(Article)
+    #tagging.register(Article)
+    pass
 except tagging.AlreadyRegistered, AttributeError:
     pass
