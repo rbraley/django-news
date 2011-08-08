@@ -43,6 +43,7 @@ class Article(models.Model):
     created_on = models.DateTimeField(blank=True)
     author = models.ForeignKey(User,null=True,blank=True)
     category = models.ManyToManyField(Category,related_name='articles',null=True,blank=True)
+    tags = TagField()
 
     def formatted_summary(self):
         return self.formatted_body(summary=True)
@@ -84,5 +85,7 @@ class Article(models.Model):
     def __unicode__(self):
         return self.title
 
-
-tagging.register(Article)
+try:
+    tagging.register(Article)
+except tagging.AlreadyRegistered:
+    pass
