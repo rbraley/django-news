@@ -4,7 +4,8 @@ from django.contrib.auth.models import User
 from datetime import datetime
 import re
 import availability
-import tagging
+from tagging.fields import TagField
+from tagging.models import Tag
 
 SUMMARY_MAX_LENGTH = 768
 
@@ -43,7 +44,10 @@ class Article(models.Model):
     created_on = models.DateTimeField(blank=True)
     author = models.ForeignKey(User,null=True,blank=True)
     category = models.ManyToManyField(Category,related_name='articles',null=True,blank=True)
-    tags = tagging.TagField()
+    tags = TagField()
+
+    def get_tags(self):
+        return Tag.objects.get_for_object(self)
 
     def formatted_summary(self):
         return self.formatted_body(summary=True)
