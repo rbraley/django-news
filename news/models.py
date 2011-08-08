@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 from datetime import datetime
 import re
 import availability
+import tagging
 
 SUMMARY_MAX_LENGTH = 768
 
@@ -83,3 +84,5 @@ class Article(models.Model):
     def __unicode__(self):
         return self.title
 
+
+tagging.register(Article)
