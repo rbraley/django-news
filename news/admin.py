@@ -9,9 +9,9 @@ class ArticleAdmin(admin.ModelAdmin):
     list_display = ('title','published','created_on','markup_filter','slug')
 
     fieldsets = (
-        ('Article Information', {'fields': ('title','body','published')}),
+        ('Article Information', {'fields': ('title','body','published','tag_list')}),
         ('Advanced', {
-            'fields': ['markup_filter', 'author','slug','created_on','summary','tags'],
+            'fields': ['markup_filter', 'author','slug','created_on','summary'],
             'classes': ['collapse',],
         }),
     )
