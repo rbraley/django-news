@@ -11,7 +11,7 @@ class ArticleAdmin(admin.ModelAdmin):
     fieldsets = (
         ('Article Information', {'fields': ('title','body','published')}),
         ('Advanced', {
-            'fields': ['markup_filter', 'author','slug','created_on','summary',],
+            'fields': ['markup_filter', 'author','slug','created_on','summary','tags'],
             'classes': ['collapse',],
         }),
     )
