@@ -20,7 +20,7 @@ def tagged(request, tag_id, page=1, max_count=8):
     qs = Article.objects.filter(tags__name__in=[tag_id]).order_by('-created_on')
 
     return object_list(request, queryset=qs, paginate_by=max_count, page=page, 
-                       template_name='article_list.html', template_object_name='article')
+                        template_object_name='article')
 
 def article(request, identifier, slugified=False):
     data = {
