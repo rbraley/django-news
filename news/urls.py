@@ -18,6 +18,8 @@ urlpatterns = patterns('',
     url(r'^$', 'news.views.index', name='news_index'),
     url(r'^(?P<page>[\d]+)/$', 'news.views.index', name='news_index'),
 
+    url(r'^tags/(?P<tag_id>[\d]+)/$', 'news.views.tagged', name='tagged_articles'),
+
     url(r'^article/edit/$', 'news.views.edit_article', name='news_article_edit'),
     url(r'^article/edit/(?P<article_id>[\d]+)/$', 'news.views.edit_article', name='news_article_edit'),
     url(r'^article/delete/(?P<article_id>[\d]+)/$', 'news.views.delete_article', name='news_article_delete'),

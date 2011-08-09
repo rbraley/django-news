@@ -8,13 +8,19 @@ from forms import NewsArticleForm
 from models import Article
 import availability
 
-def index(request, page=1, max_count=3):
+def index(request, page=1, max_count=8):
     qs = Article.objects.filter(published=True).order_by('-created_on')
 
     return object_list(request, queryset=qs, template_object_name='article',\
         paginate_by=max_count, page=page, extra_context={
             'comments_available': availability.comments
         })
+
+def tagged(request, tag_id, max_count=8):
+    qs = Article.objects.filter(tags__name__in=[tag_id]).order_by('-created_on')
+
+    return object_list(request, queryset=qs, paginate_by=max_count, page=page, 
+                       template_name='article_list.html', template_object_name='article')
 
 def article(request, identifier, slugified=False):
     data = {
