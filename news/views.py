@@ -16,7 +16,7 @@ def index(request, page=1, max_count=8):
             'comments_available': availability.comments
         })
 
-def tagged(request, tag_id, max_count=8):
+def tagged(request, tag_id, page=1, max_count=8):
     qs = Article.objects.filter(tags__name__in=[tag_id]).order_by('-created_on')
 
     return object_list(request, queryset=qs, paginate_by=max_count, page=page, 
