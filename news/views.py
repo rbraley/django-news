@@ -13,7 +13,8 @@ def index(request, page=1, max_count=8):
 
     return object_list(request, queryset=qs, template_object_name='article',\
         paginate_by=max_count, page=page, extra_context={
-            'comments_available': availability.comments
+            'comments_available': availability.comments,
+	    'featured': Article.objects.filter(featured=True)
         })
 
 def tagged(request, tag_id, page=1, max_count=8):
