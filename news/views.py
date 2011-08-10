@@ -24,7 +24,8 @@ def tagged(request, tag_id, page=1, max_count=8):
 
 def article(request, identifier, slugified=False):
     data = {
-        'queryset': Article.objects.filter(published=True)
+        'queryset': Article.objects.filter(published=True),
+	'featured': Article.objects.filter(featured=True)
     }
 
     if slugified == False:
