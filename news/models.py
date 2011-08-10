@@ -40,7 +40,7 @@ class Article(models.Model):
     markup_filter = models.PositiveIntegerField(max_length=32, choices=MARKUP_FILTER_CHOICES, null=True, blank=True)
     slug = models.SlugField(blank=True, unique=True)
     published = models.BooleanField(default=False)
-    featured = models.BooleanField(default=False, blank=True, null= True)
+    featured = models.BooleanField(default=False, blank=True)
     created_on = models.DateTimeField(blank=True)
     author = models.ForeignKey(User,null=True,blank=True)
     category = models.ManyToManyField(Category,related_name='articles',null=True,blank=True)
