@@ -25,7 +25,6 @@ def tagged(request, tag_id, page=1, max_count=8):
 def article(request, identifier, slugified=False):
     data = {
         'queryset': Article.objects.filter(published=True),
-	'featured': Article.objects.filter(featured=True)
     }
 
     if slugified == False:
@@ -35,7 +34,8 @@ def article(request, identifier, slugified=False):
 
     data['template_object_name'] = 'article'
     data['extra_context'] = {
-        'comments_available': availability.comments
+        'comments_available': availability.comments,
+	'featured': Article.objects.filter(featured=True)
     }
 
     return object_detail(request, **data)
