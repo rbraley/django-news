@@ -21,7 +21,7 @@ def tagged(request, tag_id, page=1, max_count=8):
     qs = Article.objects.filter(tags__name__in=[tag_id]).order_by('-created_on')
 
     return object_list(request, queryset=qs, paginate_by=max_count, page=page, 
-                        template_object_name='article', extra_content={
+                        template_object_name='article', extra_context={
                         'featured': Article.objects.filter(featured=True)
            })
 
